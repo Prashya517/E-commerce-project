@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<style>
+    /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+/* Header Styles */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#header .logo {
+  height: 50px;
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+#navbar {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar li {
+  margin: 0 10px;
+}
+
+#navbar li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+#navbar li a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form Styles */
+#contact-form {
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#contact-form h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+#contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#contact-form input,
+#contact-form textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#contact-form textarea {
+  resize: vertical;
+}
+
+#contact-form button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#contact-form button:hover {
+  background-color: #218838;
+}
+
+/* Contact Information Styles */
+#contact-info {
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#contact-info h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+#contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+#contact-info ul li {
+  margin-bottom: 10px;
+}
+
+#contact-info ul li strong {
+  display: inline-block;
+  width: 80px;
+}
+</style>
+<body>
+  <header>
+    <section id="header">
+      <a href="#"><img src="main logo.jpg" class="logo" alt="logo"></a>
+      <h1>Contact Us</h1>
+      <div>
+        <ul id="navbar">
+          <li><a href="login2.html">log-out</a></li>
+        </ul>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <!-- Contact Form -->
+    <section id="contact-form">
+      <h2>Get in Touch</h2>
+      <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <!-- Contact Information -->
+    <section id="contact-info">
+      <h2>Contact Information</h2>
+      <ul>
+        <li><strong>Email:</strong> support@example.com</li>
+        <li><strong>Phone:</strong> +1 (123) 456-7890</li>
+        <li><strong>Address:</strong> 123 Main Shevgaon, Shevgaon, india</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
+
+<script>
+    // Handle Contact Form Submission
+document.getElementById('contactForm').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent form submission
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+
+  // Validate form data
+  if (!name || !email || !subject || !message) {
+    alert('Please fill out all fields.');
+    return;
+  }
+
+  // Log contact data (you can replace this with an API call)
+  console.log('Contact Form Submitted:');
+  console.log('Name:', name);
+  console.log('Email:', email);
+  console.log('Subject:', subject);
+  console.log('Message:', message);
+
+  // Clear form fields
+  document.getElementById('contactForm').reset();
+
+  // Show success message
+  alert('Your message has been sent. Thank you!');
+});
+</script>

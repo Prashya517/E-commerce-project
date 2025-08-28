@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue Page</title>
+  <link rel="stylesheet" href="design.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <section id="header">
+      <a href="#"><img src="main logo.jpg" class="logo" alt="logo"></a>
+      <h1>Welcome to samanyastra </h1>
+      <div>
+        <ul id="navbar">
+          <!-- All Products -->
+          <li>
+            <a class="active" href="index.html">
+              <img src="apps-grid-icon.svg" alt="All Products Logo" class="nav-logo">
+              All Products
+            </a>
+          </li>
+          <!-- My Orders -->
+          <li>
+            <a href="gift-code.html">
+              <img src="gift2.png" alt="My Orders Logo" class="nav-logo">
+              Gift-code
+            </a>
+          </li>
+           <!-- Contact -->
+           <li>
+            <a href="help.html">
+              <img src="contect-icon.svg" alt="Contact Logo" class="nav-logo">
+               Help center
+            </a>
+          </li>
+           <!-- Login -->
+           <li>
+            <a href="login2.html">
+              <img src="login-icon.svg" alt="Login Logo" class="nav-logo">
+              Login
+            </a>
+          </li>
+          <li id="lg-bag"><a href="cart page.html"><i class="far fa-shopping-bag"></i></a></li>
+          <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+      </div>
+    </section>
+  </header>
+<!-- Search Bar -->
+<input type="text" id="search" placeholder="Search for items..." oninput="filterProducts()">
+
+  <!-- Product Catalogue -->
+  <div id="catalogue">
+    <div class="product" data-name="SAMSUNG Galaxy S25 Ultra 5G">
+      <img src="ultra.jpg" alt="SAMSUNG Galaxy S25 Ultra 5G">
+      <h3>SAMSUNG Galaxy S25 Ultra 5G</h3>
+      <p>$1,29,999.00</p>
+      <button onclick="addToCart('SAMSUNG Galaxy S25 Ultra 5G', 129999)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Google Pixel Smartwatch">
+      <img src="watch.jpg" alt="Google Pixel Smartwatch">
+      <h3>Google Pixel Smartwatch</h3>
+      <p>$21,999.00</p>
+      <button onclick="addToCart('Google Pixel Smartwatch', 21999)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="HORLICKS">
+      <img src="Hor.jpg" alt="HORLICKS">
+      <h3>HORLICKS</h3>
+      <p>$299.00</p>
+      <button onclick="addToCart('HORLICKS', 299)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Duroflex Liveln 2 in 1 Bed">
+      <img src="bed.jpg" alt="Duroflex Liveln 2 in 1 Bed">
+      <h3>Duroflex Liveln 2 in 1 Bed</h3>
+      <p>$5,999.00</p>
+      <button onclick="addToCart('Duroflex Liveln 2 in 1 Bed', 5999)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Men Printed Round Neck T-Shirt">
+      <img src="t-shirt.webp" alt="Men Printed Round Neck T-Shirt">
+      <h3>Men Printed Round Neck T-Shirt</h3>
+      <p>$399.00</p>
+      <button onclick="addToCart('Men Printed Round Neck T-Shirt', 399)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Large Laptop Backpack">
+      <img src="bag.jpg" alt="Large Laptop Backpack">
+      <h3>Large Laptop Backpack</h3>
+      <p>$599.00</p>
+      <button onclick="addToCart('Large Laptop Backpack', 599)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Women White Shoulder Bag">
+      <img src="Handbag.webp" alt="Women White Shoulder Bag">
+      <h3>Women White Shoulder Bag</h3>
+      <p>$799.00</p>
+      <button onclick="addToCart('Women White Shoulder Bag', 799)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Qubo 12WE27 LED">
+      <img src="bulb.jpg" alt="Qubo 12WE27 LED">
+      <h3>Qubo 12WE27 LED</h3>
+      <p>$699.00</p>
+      <button onclick="addToCart('Qubo 12WE27 LED', 699)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Sneaker">
+      <img src="layasa.webp" alt="Sneaker">
+      <h3>Sneaker</h3>
+      <p>$899.00</p>
+      <button onclick="addToCart('Sneaker', 899)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="BELLAVITA">
+      <img src="TAAJ.jpg" alt="BELLAVITA">
+      <h3>BELLAVITA TAAJ GOLD OUD</h3>
+      <p>$499.00</p>
+      <button onclick="addToCart('BELLAVITA TAAJ GOLD OUD', 499)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Sunglass">
+      <img src="sunglasses3.webp" alt="Sunglass">
+      <h3>Sunglass</h3>
+      <p>$199.00</p>
+      <button onclick="addToCart('Sunglass', 199)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Kaju Cashews (250 g)">
+      <img src="kaju.webp" alt="Kaju Cashews (250 g)">
+      <h3>Kaju Cashews (250 g)</h3>
+      <p>$99.00</p>
+      <button onclick="addToCart('Kaju Cashews (250 g)', 99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="boAt Airdrops 161">
+      <img src="bruds.jpg" alt="boAt Airdrops 161">
+      <h3>boAt Airdrops 161</h3>
+      <p>$799.00</p>
+      <button onclick="addToCart('boAt Airdrops 161', 799)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="HG World PS4 Controller Gamepad">
+      <img src="Gamepad.webp" alt="HG World PS4 Controller Gamepad">
+      <h3>HG World PS4 Controller Gamepad</h3>
+      <p>$999.00</p>
+      <button onclick="addToCart('HG World PS4 Controller Gamepad', 999)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="OLA S1 X+ Electric Scooter">
+      <img src="scooter.webp" alt="OLA S1 X+ Electric Scooter">
+      <h3>OLA S1 X+ Electric Scooter</h3>
+      <p>$1,09,999.00</p>
+      <button onclick="addToCart('OLA S1 X+ Electric Scooter', 109999)">Add to Cart</button>
+    </div>
+  </div>
+</body>
+</html>

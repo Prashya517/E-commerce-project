@@ -1,0 +1,57 @@
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+/* Header */
+#header {
+  background-image:'url(background.jpg)';
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#header .logo {
+  height: 120px;
+}
+#navbar {
+  display: flex;
+  list-style-type: none;
+}
+/* Navigation Logo Styles */
+.nav-logo {
+  width: 20px;
+  height: 20px;
+  size: 15px;
+  margin-right: 8px;
+}
+#navbar li {
+  margin: 0 20px;
+}
+#navbar a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 500;
+  font-size: 17px;
+  text-align: center;
+}
+.product {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+}
+.product img {
+  max-width: 100%;
+  height: auto;
+}
+#search {
+  margin: 20px;
+  padding: 10px;
+  width: 300px;
+ 
+}

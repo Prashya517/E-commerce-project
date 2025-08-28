@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<style>
+    /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+/* Header Styles */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#header .logo {
+  height: 50px;
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+#navbar {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar li {
+  margin: 0 10px;
+}
+
+#navbar li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+#navbar li a:hover {
+  text-decoration: underline;
+}
+
+/* Order History Styles */
+#order-history {
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#order-history h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+.order {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.order h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.order p {
+  margin: 5px 0;
+}
+
+.order button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.order button:hover {
+  background-color: #218838;
+}
+
+.order button:last-child {
+  background-color: #dc3545;
+}
+
+.order button:last-child:hover {
+  background-color: #c82333;
+}
+
+/* Tracking Information Styles */
+#tracking-info {
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#tracking-info h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+#tracking-details {
+  margin-bottom: 20px;
+}
+
+#tracking-info button {
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#tracking-info button:hover {
+  background-color: #c82333;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+</style>
+<body>
+  <header>
+    <section id="header">
+      <a href="#"><img src="logo.jpg" class="logo" alt="logo"></a>
+      <h1>My Orders</h1>
+      <div>
+        <ul id="navbar">
+          <li><a href="./index.html">Home</a></li>
+        </ul>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <!-- Order History Section -->
+    <section id="order-history">
+      <h2>Order History</h2>
+      <div class="order">
+        <h3>Order #12345</h3>
+        <p><strong>Date:</strong> October 10, 2023</p>
+        <p><strong>Status:</strong> Shipped</p>
+        <p><strong>Tracking Number:</strong> <span class="tracking-number">TRK123456789</span></p>
+        <button onclick="trackOrder('TRK123456789')">Track Order</button>
+        <button onclick="reorder('12345')">Reorder</button>
+        <button onclick="returnItem('12345')">Return Item</button>
+      </div>
+      <div class="order">
+        <h3>Order #67890</h3>
+        <p><strong>Date:</strong> September 25, 2023</p>
+        <p><strong>Status:</strong> Delivered</p>
+        <p><strong>Tracking Number:</strong> <span class="tracking-number">TRK987654321</span></p>
+        <button onclick="trackOrder('TRK987654321')">Track Order</button>
+        <button onclick="reorder('67890')">Reorder</button>
+        <button onclick="returnItem('67890')">Return Item</button>
+      </div>
+    </section>
+
+    <!-- Tracking Information Section -->
+    <section id="tracking-info" class="hidden">
+      <h2>Tracking Information</h2>
+      <div id="tracking-details"></div>
+      <button onclick="closeTracking()">Close</button>
+    </section>
+  </main>
+</body>
+</html>
+
+<script>
+    // Track Order Function
+function trackOrder(trackingNumber) {
+  const trackingDetails = document.getElementById('tracking-details');
+  trackingDetails.innerHTML = `
+    <p><strong>Tracking Number:</strong> ${trackingNumber}</p>
+    <p><strong>Status:</strong> In Transit</p>
+    <p><strong>Estimated Delivery:</strong> October 20, 2023</p>
+    <p><strong>Location:</strong> New York, USA</p>
+  `;
+  document.getElementById('tracking-info').classList.remove('hidden');
+}
+
+// Close Tracking Information
+function closeTracking() {
+  document.getElementById('tracking-info').classList.add('hidden');
+}
+
+// Reorder Function
+function reorder(orderNumber) {
+  alert(`Reorder requested for Order #${orderNumber}.`);
+}
+
+// Return Item Function
+function returnItem(orderNumber) {
+  alert(`Return requested for Order #${orderNumber}.`);
+}
+</script>

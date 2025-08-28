@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24x7 Cutomer Support</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<style>
+    /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+/* Header Styles */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#header .logo {
+  height: 50px;
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+#navbar {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar li {
+  margin: 0 10px;
+}
+
+#navbar li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+#navbar li a:hover {
+  text-decoration: underline;
+}
+
+/* Help Section Styles */
+.help-section {
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.help-section h2 {
+  margin: 0;
+  font-size: 20px;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.help-section h2:hover {
+  text-decoration: underline;
+}
+
+.help-section .content {
+  margin-top: 10px;
+}
+
+.help-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.help-section label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.help-section input,
+.help-section textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.help-section textarea {
+  resize: vertical;
+}
+
+.help-section button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.help-section button:hover {
+  background-color: #218838;
+}
+
+.help-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.help-section ul li {
+  margin-bottom: 10px;
+}
+
+.help-section ul li strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+</style>
+<body>
+  <header>
+    <section id="header">
+      <a href="#"><img src="main logo.jpg" class="logo" alt="logo"></a>
+      <h1>24x7 Cutomer Support</h1>
+      <div>
+        <ul id="navbar">
+          <li><a href="contect.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <!-- Customer Complaints Section -->
+    <section class="help-section">
+      <h2 onclick="toggleSection('complaints')">Customer Complaints</h2>
+      <div id="complaints" class="content hidden">
+        <p>If you have any complaints, please fill out the form below:</p>
+        <form id="complaintForm">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="complaint">Complaint:</label>
+          <textarea id="complaint" name="complaint" rows="5" required></textarea>
+
+          <button type="submit">Submit Complaint</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Customer Support Section -->
+    <section class="help-section">
+      <h2 onclick="toggleSection('support')">Customer Support</h2>
+      <div id="support" class="content hidden">
+        <p>For customer support, please contact us:</p>
+        <ul>
+          <li>Email: support@example.com</li>
+          <li>Phone: +91 95521 33193</li>
+          <li>Live Chat: <a href="#">Click here to chat</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Customer Questions Section -->
+    <section class="help-section">
+      <h2 onclick="toggleSection('questions')">Customer Questions</h2>
+      <div id="questions" class="content hidden">
+        <p>Frequently Asked Questions:</p>
+        <ul>
+          <li>
+            <strong>1: How do I track my order?</strong>
+            <p>d: You can track your order using the tracking number provided in your confirmation email.</p>
+          </li>
+          <li>
+            <strong>2: What is your return policy?</strong>
+            <p>b: We offer a 30-day return policy for unused items. Please visit our Returns page for more details.</p>
+          </li>
+          <li>
+            <strong>3: How do I reset my password?</strong>
+            <p>a: Click on "Forgot Password" on the login page and follow the instructions.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
+<script>
+    // Toggle Section Visibility
+function toggleSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  section.classList.toggle('hidden');
+}
+
+// Handle Complaint Form Submission
+document.getElementById('complaintForm').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent form submission
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const complaint = document.getElementById('complaint').value;
+
+  // Validate form data
+  if (!name || !email || !complaint) {
+    alert('Please fill out all fields.');
+    return;
+  }
+
+  // Log complaint data (you can replace this with an API call)
+  console.log('Complaint Submitted:');
+  console.log('Name:', name);
+  console.log('Email:', email);
+  console.log('Complaint:', complaint);
+
+  // Clear form fields
+  document.getElementById('complaintForm').reset();
+
+  // Show success message
+  alert('Your complaint has been submitted. Thank you!');
+});
+</script>

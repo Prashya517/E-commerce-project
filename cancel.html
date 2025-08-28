@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cancel Request Form</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<style>
+    /* Cancel Request Button */
+#cancel-request-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+/* Navigation Logo Styles */
+.nav-logo {
+  width: 20px;
+  height: 20px;
+  size: 15px;
+  margin-right: 8px;
+}
+
+#cancel-request-btn:hover {
+  background-color: #c82333;
+}
+
+/* Cancel Request Form Container */
+#cancel-request-form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cancel Request Form */
+.cancel-request-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cancel-request-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.cancel-request-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.cancel-request-form input,
+.cancel-request-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.cancel-request-form textarea {
+  resize: vertical;
+}
+
+.cancel-request-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cancel-request-form button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  margin-right: 10px;
+}
+
+.cancel-request-form button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+.cancel-request-form button[type="button"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-request-form button[type="button"]:hover {
+  background-color: #c82333;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+</style>
+<body>
+  <!-- Cancel Request Button -->
+  <button id="cancel-request-btn" onclick="openCancelRequestForm()">Cancel Request</button>
+
+  <!-- Cancel Request Form (Hidden by Default) -->
+  <div id="cancel-request-form-container" class="hidden">
+    <div class="cancel-request-form">
+      <h2>Cancel Request Form</h2>
+      <form id="cancelRequestForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="order-id">Order ID:</label>
+        <input type="text" id="order-id" name="order-id" required>
+
+        <label for="reason">Reason for Cancellation:</label>
+        <textarea id="reason" name="reason" rows="5" required></textarea>
+
+        <button type="submit">Submit</button>
+        <button type="button" onclick="closeCancelRequestForm()">Close</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+    // Open Cancel Request Form
+function openCancelRequestForm() {
+  const cancelRequestFormContainer = document.getElementById('cancel-request-form-container');
+  cancelRequestFormContainer.classList.remove('hidden');
+}
+
+// Close Cancel Request Form
+function closeCancelRequestForm() {
+  const cancelRequestFormContainer = document.getElementById('cancel-request-form-container');
+  cancelRequestFormContainer.classList.add('hidden');
+}
+
+// Handle Form Submission
+document.getElementById('cancelRequestForm').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Get form data
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const orderId = document.getElementById('order-id').value;
+  const reason = document.getElementById('reason').value;
+
+  // Validate form data
+  if (!name || !email || !orderId || !reason) {
+    alert('Please fill out all fields.');
+    return;
+  }
+
+  // Log cancel request data (you can replace this with an API call)
+  console.log('Cancel Request Submitted:');
+  console.log('Name:', name);
+  console.log('Email:', email);
+  console.log('Order ID:', orderId);
+  console.log('Reason:', reason);
+
+  // Clear form fields
+  document.getElementById('cancelRequestForm').reset();
+
+  // Show success message
+  alert('Your cancel request has been submitted. Thank you!');
+});
+</script>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Code</title>
+  <link rel="stylesheet" href="design.css">
+  <script defer src="script.js"></script>
+</head>
+<style>
+    /* Gift Code Section */
+#gift-code-section {
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 50%;
+  background-color: #f9f9f9;
+}
+
+#gift-code-section h2 {
+  margin-bottom: 20px;
+}
+
+#gift-code-input {
+  padding: 10px;
+  width: 60%;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#gift-code-section button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#gift-code-section button:hover {
+  background-color: #0056b3;
+}
+
+#gift-code-message {
+  margin-top: 10px;
+  color: green;
+  font-weight: bold;
+}
+
+/* Cart Summary */
+#cart-summary {
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 50%;
+  background-color: #f9f9f9;
+}
+
+#cart-summary h2 {
+  margin-bottom: 20px;
+}
+
+#cart-items {
+  list-style-type: none;
+  padding: 0;
+}
+
+#cart-items li {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+</style>
+<body>
+  <header>
+    <section id="header">
+      <a href="#"><img src="main logo.jpg" class="logo" alt="logo"></a>
+      <h1>Welcome to Samanyastra</h1>
+      <div>
+        <ul id="navbar">
+          <!-- All Products -->
+          <li>
+            <a href="./index.html">
+              <img src="apps-grid-icon.svg" alt="All Products Logo" class="nav-logo">
+              All Products
+            </a>
+          </li>
+          <!-- My Orders -->
+          <li>
+            <a href="my-orders.html">
+              <img src="7480410.png" alt="My Orders Logo" class="nav-logo">
+              Track orders
+            </a>
+          </li>
+          <!-- Help Center -->
+          <li>
+            <a href="feedback.html">
+              <img src="feedback-rating-icon.svg" alt="feedback" class="nav-logo">
+              feedback
+            </a>
+          </li>
+          <!-- Login -->
+          <li>
+            <a href="./index.html">
+              <img src="back.png" alt="Login Logo" class="nav-logo">
+              back 
+            </a>
+          </li>
+          <li id="lg-bag"><a href="my-orders2.html"><i class="far fa-shopping-bag"></i></a></li>
+          <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+      </div>
+    </section>
+  </header>
+
+  <!-- Gift Code Section -->
+  <div id="gift-code-section">
+    <h2>Apply Gift Code</h2>
+    <input type="text" id="gift-code-input" placeholder="Enter your gift code">
+    <button onclick="applyGiftCode()">Apply Code</button>
+    <!-- <button onclick="buynow()">Buy now</button>  -->
+    <p id="gift-code-message"></p>
+  </div>
+
+  <!-- Cart Summary -->
+  <div id="cart-summary">
+    <h2>Cart Summary</h2>
+    <ul id="cart-items"></ul>
+    <p>Subtotal: $<span id="subtotal">0.00</span></p>
+    <p>Discount: $<span id="discount">0.00</span></p>
+    <p>Total: $<span id="total-price">0.00</span></p> 
+    <button onclick="buyNow()">Buy Now</button>
+</div>
+</body>
+</html>
+
+<script>
+    let cart = [];
+let subtotal = 0;
+let discount = 0;
+
+// Load cart from localStorage
+function loadCart() {
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+    updateCart();
+  }
+}
+
+// Update cart display
+function updateCart() {
+  const cartItems = document.getElementById('cart-items');
+  if (cartItems) {
+    cartItems.innerHTML = '';
+    subtotal = 0;
+
+    cart.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+      cartItems.appendChild(li);
+      subtotal += item.price;
+    });
+
+    const subtotalElement = document.getElementById('subtotal');
+    if (subtotalElement) {
+      subtotalElement.textContent = subtotal.toFixed(2);
+    }
+
+    calculateTotal();
+  }
+}
+
+// Apply gift code
+function applyGiftCode() {
+  const giftCodeInput = document.getElementById('gift-code-input').value;
+  const giftCodeMessage = document.getElementById('gift-code-message');
+
+  // Example gift codes
+  const validGiftCodes = {
+    "WELCOME10": 0.1, // 10% discount
+    "FREESHIP": 5, // $5 discount
+    "HOLIDAY20": 0.2, // 20% discount
+  };
+
+  if (validGiftCodes[giftCodeInput]) {
+    const codeValue = validGiftCodes[giftCodeInput];
+    if (codeValue < 1) {
+      discount = subtotal * codeValue; // Percentage discount
+    } else {
+      discount = codeValue; // Fixed discount
+    }
+    giftCodeMessage.textContent = "Gift code applied successfully!";
+    giftCodeMessage.style.color = "green";
+  } else {
+    discount = 0;
+    giftCodeMessage.textContent = "Invalid gift code.";
+    giftCodeMessage.style.color = "red";
+  }
+
+  calculateTotal();
+}
+
+// Calculate total price
+function calculateTotal() {
+  const total = subtotal - discount;
+  const discountElement = document.getElementById('discount');
+  const totalElement = document.getElementById('total-price');
+
+  if (discountElement) {
+    discountElement.textContent = discount.toFixed(2);
+  }
+  if (totalElement) {
+    totalElement.textContent = total.toFixed(2);
+  }
+}
+
+// Load cart when the page loads
+window.onload = loadCart;
+</script>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In or Create Account</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .container input[type="text"],
+        .container input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #218838;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Step 1: Enter Mobile Number or Email -->
+        <div id="step1">
+            <h2>Sign In or Create Account</h2>
+            <input type="text" id="mobileOrEmail" placeholder="Enter Mobile Number or Email" required>
+            <button onclick="checkAccount()">Continue</button>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+
+        <!-- Step 2: Enter First and Last Name -->
+        <div id="step2" class="hidden">
+            <h2>Create Your Account</h2>
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <button onclick="verifyMobile()">Verify Mobile Number</button>
+        </div>
+
+        <!-- Step 3: Verify Mobile Number with CAPTCHA -->
+        <div id="step3" class="hidden">
+            <h2>Verify Mobile Number</h2>
+            <p>Enter the CAPTCHA below:</p>
+            <div id="captcha"></div>
+            <input type="text" id="captchaInput" placeholder="Enter CAPTCHA" required>
+            <button onclick="createAccount()">Create Account</button>
+        </div>
+    </div>
+
+    <script>
+        let mobileOrEmail = "";
+        let firstName = "";
+        let lastName = "";
+
+        // Step 1: Check if the user already has an account
+        function checkAccount() {
+            const input = document.getElementById("mobileOrEmail").value.trim();
+            const errorMessage = document.getElementById("errorMessage");
+
+            if (input === "") {
+                errorMessage.textContent = "Please enter your mobile number or email.";
+                return;
+            }
+
+            mobileOrEmail = input;
+
+            // Simulate account check
+            if (input === "1234567890" || input === "test@example.com") {
+                alert("You already have an account. Please sign in.");
+            } else {
+                alert("Looks like you're new! Let's create your account.");
+                document.getElementById("step1").classList.add("hidden");
+                document.getElementById("step2").classList.remove("hidden");
+            }
+        }
+
+        // Step 2: Verify Mobile Number
+        function verifyMobile() {
+            firstName = document.getElementById("firstName").value.trim();
+            lastName = document.getElementById("lastName").value.trim();
+
+            if (firstName === "" || lastName === "") {
+                alert("Please enter your first and last name.");
+                return;
+            }
+
+            // Show CAPTCHA for verification
+            document.getElementById("step2").classList.add("hidden");
+            document.getElementById("step3").classList.remove("hidden");
+            generateCaptcha();
+        }
+
+        // Generate CAPTCHA
+        function generateCaptcha() {
+            const captcha = Math.random().toString(36).substring(2, 8).toUpperCase();
+            document.getElementById("captcha").textContent = captcha;
+        }
+
+        // Step 3: Create Account
+        function createAccount() {
+            const captchaInput = document.getElementById("captchaInput").value.trim();
+            const captcha = document.getElementById("captcha").textContent;
+
+            if (captchaInput === "") {
+                alert("Please enter the CAPTCHA.");
+                return;
+            }
+
+            if (captchaInput !== captcha) {
+                alert("Invalid CAPTCHA. Please try again.");
+                generateCaptcha();
+                return;
+            }
+
+            // Simulate account creation
+            alert("Account created successfully! Redirecting to the home page...");
+            window.location.href = "./index.html"; // Redirect to home page
+        }
+    </script>
+</body>
+</html>
